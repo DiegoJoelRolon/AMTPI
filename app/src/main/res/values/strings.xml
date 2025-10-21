@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AMTPI</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="hint_contraseña">Contraseña</string>
+    <string name="hint_repeat_contraseña">Repetir Contraseña</string>
+    <string name="hint_correo">Ejemplo@Ejemplo.com</string>
+    <string name="hint_repeat_correo">Repetir Correo</string>
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="register_activity_title">Registrarse</string>
+
+
+</resources>

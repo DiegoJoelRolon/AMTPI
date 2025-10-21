@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "893150530247",
+    "project_id": "proyectoaplismoviles",
+    "storage_bucket": "proyectoaplismoviles.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893150530247:android:3063222face7782b06cce2",
+        "android_client_info": {
+          "package_name": "com.example.amtpi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApH3hkrEJVsFh_n36oR8c2FR0xUCOxgnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
