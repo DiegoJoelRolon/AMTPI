@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class Post(
     @get:Exclude val id: String? = null,
     //val imageUrls: List<String> = emptyList(),
-    val imageUrls: String = "https://www.agenciacomunas.com.ar/wp-content/uploads/2025/01/VARELA-ANIV.jpg",
+    val imageUrls: String = "",
     val content: String = "",
     val username: String = "",
     val userId: String = "",

@@ -1,13 +1,14 @@
 package com.example.amtpi
 
 import android.content.Intent
+import android.util.Base64 // <-- Asegúrate de que esta importación esté presente
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView // Importa ImageView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide // Importa Glide
+import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -20,7 +21,6 @@ class PostsAdapter(
         val username: TextView = view.findViewById(R.id.post_username)
         val content: TextView = view.findViewById(R.id.post_content_text)
         val timestamp: TextView = view.findViewById(R.id.post_timestamp)
-        // Referencia al nuevo ImageView
         val postImage: ImageView = view.findViewById(R.id.post_image)
     }
 
@@ -39,15 +39,29 @@ class PostsAdapter(
             holder.timestamp.text = sdf.format(it)
         }
 
-        // Cargar la imagen usando Glide
+        // --- INICIO DE CÓDIGO MODIFICADO ---
+
+        // Cargar la imagen desde la cadena Base64
         if (post.imageUrls.isNotEmpty()) {
-            Glide.with(holder.itemView.context)
-                .load(post.imageUrls)
-                .into(holder.postImage)
-            holder.postImage.visibility = View.VISIBLE
+            try {
+                // Decodifica la cadena Base64 a un array de bytes
+                val imageBytes = Base64.decode(post.imageUrls, Base64.DEFAULT)
+
+                // Glide puede cargar un array de bytes directamente
+                Glide.with(holder.itemView.context)
+                    .load(imageBytes)
+                    .into(holder.postImage)
+
+                holder.postImage.visibility = View.VISIBLE
+            } catch (e: IllegalArgumentException) {
+                // Esto puede suceder si la cadena Base64 es inválida
+                holder.postImage.visibility = View.GONE
+            }
         } else {
             holder.postImage.visibility = View.GONE
         }
+
+        // --- FIN DE CÓDIGO MODIFICADO ---
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
