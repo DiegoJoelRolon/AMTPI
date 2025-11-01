@@ -1,20 +1,23 @@
 package com.example.amtpi
 
 import android.content.Intent
-import android.util.Base64 // <-- Asegúrate de que esta importación esté presente
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class PostsAdapter(
     private val posts: List<Post>,
-    private val onPostLongClickListener: (Post) -> Unit
+    private val onPostLongClickListener: (Post) -> Unit,
+    private val onLikeClickListener: (Post) -> Unit
 ) : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
     class PostViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,6 +25,8 @@ class PostsAdapter(
         val content: TextView = view.findViewById(R.id.post_content_text)
         val timestamp: TextView = view.findViewById(R.id.post_timestamp)
         val postImage: ImageView = view.findViewById(R.id.post_image)
+        val likeButton: ImageButton = view.findViewById(R.id.like_button)
+        val likeCount: TextView = view.findViewById(R.id.like_count)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -39,29 +44,44 @@ class PostsAdapter(
             holder.timestamp.text = sdf.format(it)
         }
 
-        // --- INICIO DE CÓDIGO MODIFICADO ---
 
-        // Cargar la imagen desde la cadena Base64
+
         if (post.imageUrls.isNotEmpty()) {
             try {
-                // Decodifica la cadena Base64 a un array de bytes
+
                 val imageBytes = Base64.decode(post.imageUrls, Base64.DEFAULT)
 
-                // Glide puede cargar un array de bytes directamente
+
                 Glide.with(holder.itemView.context)
                     .load(imageBytes)
                     .into(holder.postImage)
 
                 holder.postImage.visibility = View.VISIBLE
             } catch (e: IllegalArgumentException) {
-                // Esto puede suceder si la cadena Base64 es inválida
+
                 holder.postImage.visibility = View.GONE
             }
         } else {
             holder.postImage.visibility = View.GONE
         }
 
-        // --- FIN DE CÓDIGO MODIFICADO ---
+        val likesCount = post.likedBy.size
+        holder.likeCount.text = "$likesCount Me gusta"
+        holder.likeCount.visibility = if (likesCount > 0) View.VISIBLE else View.INVISIBLE
+
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null && post.likedBy.contains(currentUser.uid)) {
+
+            holder.likeButton.setImageResource(R.drawable.baseline_favorite_24)
+        } else {
+
+            holder.likeButton.setImageResource(R.drawable.outline_favorite_24)
+        }
+
+        holder.likeButton.setOnClickListener {
+            onLikeClickListener(post)
+        }
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context

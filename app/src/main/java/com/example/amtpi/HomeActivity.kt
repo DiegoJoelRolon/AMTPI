@@ -6,13 +6,15 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog // 1. Importa AlertDialog
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -34,25 +36,24 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
+        val ctx = applicationContext
+        org.osmdroid.config.Configuration.getInstance().load(ctx, androidx.preference.PreferenceManager.getDefaultSharedPreferences(ctx))
+        org.osmdroid.config.Configuration.getInstance().userAgentValue = BuildConfig.APPLICATION_ID
+
+
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
         postsRecyclerView = findViewById(R.id.posts_recyclerview)
         postsRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        // 2. Pasa el listener del clic largo al adaptador
-        postsAdapter = PostsAdapter(postList) { post ->
-            showDeleteConfirmationDialog(post)
-        }
+        postsAdapter = PostsAdapter(postList,
+            onPostLongClickListener = { post -> showDeleteConfirmationDialog(post) },
+            onLikeClickListener = { post -> toggleLike(post) }
+        )
         postsRecyclerView.adapter = postsAdapter
 
         val btnCerrarSesion = findViewById<Button>(R.id.btn_cerrar_sesion)
-        val btnNuevoPosteo = findViewById<Button>(R.id.btn_nuevo_posteo)
-
-        btnNuevoPosteo.setOnClickListener {
-            val intent = Intent(this, CreatePostActivity::class.java)
-            startActivity(intent)
-        }
 
         btnCerrarSesion.setOnClickListener {
             auth.signOut()
@@ -62,10 +63,20 @@ class HomeActivity : AppCompatActivity() {
             finish()
         }
 
+
+        val btnNuevoPdi = findViewById<Button>(R.id.btn_pdi)
+
+        btnNuevoPdi.setOnClickListener {
+
+            val intent = Intent(this, MapActivity::class.java)
+
+            startActivity(intent)
+        }
+
         loadPosts()
     }
 
-    // 3. Añade la función para mostrar el diálogo de confirmación
+
     private fun showDeleteConfirmationDialog(post: Post) {
         AlertDialog.Builder(this)
             .setTitle("Confirmar borrado")
@@ -77,7 +88,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    // 4. Añade la función para borrar el post de Firestore
+
     private fun deletePost(post: Post) {
         val postId = post.id
         if (postId == null) {
@@ -85,11 +96,11 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
-        // ¡Mucho más simple y directo!
+
         db.collection("posts").document(postId).delete()
             .addOnSuccessListener {
                 Toast.makeText(this, "Posteo borrado exitosamente.", Toast.LENGTH_SHORT).show()
-                // La lista se actualiza sola gracias al SnapshotListener, no necesitamos hacer nada más.
+
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al borrar el posteo: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -114,8 +125,23 @@ class HomeActivity : AppCompatActivity() {
                 }
                 postsAdapter.notifyDataSetChanged()
                 if (postList.isNotEmpty()) {
-                    // postsRecyclerView.smoothScrollToPosition(0) // Comentado para evitar scroll al borrar
+
                 }
             }
     }
+
+    private fun toggleLike(post: Post) {
+        val currentUser = auth.currentUser ?: return
+        val postRef = db.collection("posts").document(post.id!!)
+
+        if (post.likedBy.contains(currentUser.uid)) {
+
+            postRef.update("likedBy", FieldValue.arrayRemove(currentUser.uid))
+        } else {
+
+            postRef.update("likedBy", FieldValue.arrayUnion(currentUser.uid))
+        }
+    }
+
+
 }

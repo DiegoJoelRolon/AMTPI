@@ -7,10 +7,9 @@ import java.util.Date
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Post(
-    @get:Exclude val id: String? = null,
-    val imageUrls: String = "",
-    val content: String = "",
+data class Comment(
+    @get:Exclude var id: String? = null,
+    val commentText: String = "",
     val username: String = "",
     val userId: String = "",
     @ServerTimestamp

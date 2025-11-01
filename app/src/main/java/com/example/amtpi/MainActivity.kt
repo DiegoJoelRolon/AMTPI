@@ -27,19 +27,19 @@ class MainActivity : AppCompatActivity() {
         }
         auth = Firebase.auth
 
-        //busqueda de los elementos
+
         val email = findViewById<EditText>(R.id.email)
         val password = findViewById<EditText>(R.id.password)
         val btnIniciarSesion = findViewById<Button>(R.id.btn_iniciar_sesion)
         val btnRegistrarse = findViewById<Button>(R.id.btn_registrarse)
 
-        //configurar btn registro
+
         btnRegistrarse.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
 
-        //configurar btn iniciar sesion
+
         btnIniciarSesion.setOnClickListener {
             val email = email.text.toString()
             val password = password.text.toString()

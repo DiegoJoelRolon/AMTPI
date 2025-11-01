@@ -28,7 +28,7 @@ class Register : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        //get elementos
+
         val username = findViewById<EditText>(R.id.input_username)
         val email = findViewById<EditText>(R.id.input_email)
         val repeatEmail = findViewById<EditText>(R.id.repeat_input_email)
@@ -36,7 +36,7 @@ class Register : AppCompatActivity() {
         val repeatPassword = findViewById<EditText>(R.id.repeat_input_password)
         val btnRegistrarse = findViewById<Button>(R.id.btn_registrarse)
 
-        //configurar btn registro
+
 
         btnRegistrarse.setOnClickListener {
             val username = username.text.toString()

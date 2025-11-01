@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AMTPI</string>
+    <string name="app_name">VarelApp</string>
     <string name="iniciar_sesion">Iniciar Sesión</string>
     <string name="registrarse">Registrarse</string>
     <string name="hint_contraseña">Contraseña</string>
@@ -8,6 +8,19 @@
     <string name="hint_repeat_correo">Repetir Correo</string>
     <string name="hint_username">Nombre de usuario</string>
     <string name="register_activity_title">Registrarse</string>
+    <string name="pdi_button">Ver Pdis</string>
+    <string name="publish">Publicar</string>
+    <string name="create_post_hint">¿En qué estas pensando?</string>
+    <string name="content">GenericContent</string>
+    <string name="close_sesion">Cerrar Sesión</string>
+    <string name="new_post_title">Nuevo Post</string>
+    <string name="PDI">Puntos de Interés</string>
+    <string name="comments">Comentarios</string>
+    <string name="comments_hint">Escribe un comentario...</string>
+    <string name="send_comment_button">Enviar comentario</string>
+
+
+
 
 
 </resources>

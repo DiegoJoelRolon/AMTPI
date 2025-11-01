@@ -5,51 +5,67 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".CreatePostActivity">
 
-    <ImageView
-        android:id="@+id/create_post_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/create_post_image_card"
+        android:layout_width="377dp"
+        android:layout_height="464dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/create_post_content"
+        <ImageView
+            android:id="@+id/create_post_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/material_dynamic_secondary90"
+            android:contentDescription="@string/content"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/create_post_content_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="top"
-        android:hint="¿Qué estás pensando?"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_post_image" />
-
-    <Button
-        android:id="@+id/btn_open_camera"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Tomar Foto"
-        app:layout_constraintStart_toStartOf="@+id/create_post_content"
-        app:layout_constraintTop_toBottomOf="@+id/create_post_content" />
+        android:layout_marginEnd="16dp"
+        android:hint="@string/create_post_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_post_image_card">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/create_post_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:minHeight="120dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_create_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Publicar"
-        app:layout_constraintEnd_toEndOf="@+id/create_post_content"
-        app:layout_constraintTop_toBottomOf="@+id/create_post_content" />
+        android:text="@string/publish"
+        app:layout_constraintEnd_toEndOf="@+id/create_post_content_layout"
+        app:layout_constraintTop_toBottomOf="@+id/create_post_content_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
