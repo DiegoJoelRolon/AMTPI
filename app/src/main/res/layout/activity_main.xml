@@ -9,14 +9,28 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_icono_app"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="156dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <EditText
@@ -40,7 +54,6 @@
             android:inputType="textPassword"
             android:padding="16dp" />
 
-->
         <Button
             android:id="@+id/btn_iniciar_sesion"
             style="@style/Widget.AppCompat.Button.Colored"
@@ -49,17 +62,18 @@
             android:layout_marginTop="24dp"
             android:paddingVertical="12dp"
             android:text="@string/iniciar_sesion"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+
+            />
 
 
         <Button
             android:id="@+id/btn_registrarse"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/registrarse"
-            android:textColor="?attr/colorPrimary" />
+            android:text="@string/registrarse" />
 
     </LinearLayout>
 

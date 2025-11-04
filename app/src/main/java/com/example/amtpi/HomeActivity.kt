@@ -36,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
+
         val ctx = applicationContext
         org.osmdroid.config.Configuration.getInstance().load(ctx, androidx.preference.PreferenceManager.getDefaultSharedPreferences(ctx))
         org.osmdroid.config.Configuration.getInstance().userAgentValue = BuildConfig.APPLICATION_ID
@@ -70,6 +71,12 @@ class HomeActivity : AppCompatActivity() {
 
             val intent = Intent(this, MapActivity::class.java)
 
+            startActivity(intent)
+        }
+
+        val btnUserProfile = findViewById<Button>(R.id.btn_user_profile)
+        btnUserProfile.setOnClickListener {
+            val intent = Intent(this, UserProfileActivity::class.java)
             startActivity(intent)
         }
 

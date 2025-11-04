@@ -8,7 +8,7 @@
     <string name="hint_repeat_correo">Repetir Correo</string>
     <string name="hint_username">Nombre de usuario</string>
     <string name="register_activity_title">Registrarse</string>
-    <string name="pdi_button">Ver Pdis</string>
+    <string name="pdi_button">Nuevo Posteo</string>
     <string name="publish">Publicar</string>
     <string name="create_post_hint">¿En qué estas pensando?</string>
     <string name="content">GenericContent</string>
@@ -18,9 +18,6 @@
     <string name="comments">Comentarios</string>
     <string name="comments_hint">Escribe un comentario...</string>
     <string name="send_comment_button">Enviar comentario</string>
-
-
-
-
+    <string name="profile_btn">Perfil</string>
 
 </resources>
