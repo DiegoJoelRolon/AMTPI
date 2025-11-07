@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Nombre de Usuario" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_posts_recyclerview"
         android:layout_width="0dp"
@@ -32,8 +33,54 @@
         android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_profile_name"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/post_item" />
+
+    <LinearLayout
+        android:id="@+id/bottom_nav_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainer"
+        android:elevation="4dp"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <Button
+            android:id="@+id/btn_pdi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:drawableTop="@drawable/outline_map_search_24"
+            android:drawableTint="?attr/colorPrimary"
+            android:padding="8dp"
+            android:text="@string/pdi_button"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn_cerrar_sesion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_baseline_settings_24"
+            android:padding="8dp"
+            android:text="@string/configuration"
+            android:textColor="?attr/colorError"
+            android:textSize="12sp" />
+
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

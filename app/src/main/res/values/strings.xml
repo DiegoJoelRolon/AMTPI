@@ -10,14 +10,23 @@
     <string name="register_activity_title">Registrarse</string>
     <string name="pdi_button">Nuevo Posteo</string>
     <string name="publish">Publicar</string>
-    <string name="create_post_hint">¿En qué estas pensando?</string>
-    <string name="content">GenericContent</string>
-    <string name="close_sesion">Cerrar Sesión</string>
+    <string name="create_post_hint">¿Que pensas del lugar?</string>
+    <string name="content" translatable="false">GenericContent</string>
+    <string name="configuration">Configuración</string>
     <string name="new_post_title">Nuevo Post</string>
     <string name="PDI">Puntos de Interés</string>
     <string name="comments">Comentarios</string>
-    <string name="comments_hint">Escribe un comentario...</string>
+    <string name="comments_hint">Escribi un comentario…</string>
     <string name="send_comment_button">Enviar comentario</string>
-    <string name="profile_btn">Perfil</string>
+    <string name="my_posts_btn">Mis posts</string>
+    <string name="user_profile_title">Editar Perfil</string>
+    <string name="close_sesion">Cerrar sesion</string>
+    <string name="btn_volver">Volver</string>
+    <string name="able_like_notifications">Permitir recibir notificaciones de \"Me gusta\"</string>
+    <string name="like">Me gusta</string>
+    <string name="popular_post_notification_title">¡Tu post es popular! 🎉</string>
+    <string name="popular_post_notification_text">Tu post \"%1$s...\" ha alcanzado %2$d me gusta.</string>
+    <string name="dark_mode">Modo oscuro</string>
+
 
 </resources>

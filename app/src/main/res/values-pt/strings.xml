@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VarelApp</string>
+    <string name="iniciar_sesion">Entrar</string>
+    <string name="registrarse">Cadastrar-se</string>
+    <string name="hint_contraseña">Senha</string>
+    <string name="hint_repeat_contraseña">Repetir Senha</string>
+    <string name="hint_correo">Exemplo@Exemplo.com</string>
+    <string name="hint_repeat_correo">Repetir E-mail</string>
+    <string name="hint_username">Nome de usuário</string>
+    <string name="register_activity_title">Cadastrar-se</string>
+    <string name="pdi_button">Nova Publicação</string>
+    <string name="publish">Publicar</string>
+    <string name="create_post_hint">O que você está pensando?</string>
+    <string name="close_sesion">desconectar</string>
+    <string name="configuration">configuração</string>
+    <string name="new_post_title">Nova Publicação</string>
+    <string name="PDI">Pontos de Interesse</string>
+    <string name="comments">Comentários</string>
+    <string name="comments_hint">Escreva um comentário...</string>
+    <string name="send_comment_button">Enviar comentário</string>
+    <string name="my_posts_btn">"Minhas postagens "</string>
+    <string name="user_profile_title">Editar perfil</string>
+    <string name="btn_volver">retornar</string>
+    <string name="able_like_notifications">Ative as notificações de \"Curtir\"</string>
+    <string name="like">" Eu gosto"</string>
+    <string name="popular_post_notification_title">Sua publicação é popular! 🎉</string>
+    <string name="popular_post_notification_text">Sua publicação \"%1$s...\" alcançou %2$d curtidas.</string>
+    <string name="dark_mode">"Modo escuro "</string>
+</resources>

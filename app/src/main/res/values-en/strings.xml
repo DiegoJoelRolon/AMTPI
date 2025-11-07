@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VarelApp</string>
+    <string name="iniciar_sesion">Sign in</string>
+    <string name="registrarse">Sign Up</string>
+    <string name="hint_contraseña">Password</string>
+    <string name="hint_repeat_contraseña">Repeat Password</string>
+    <string name="hint_correo">Example@Example.com</string>
+    <string name="hint_repeat_correo">Example@Example.com</string>
+    <string name="hint_username">Username</string>
+    <string name="register_activity_title">Sign Up</string>
+    <string name="pdi_button">New Post</string>
+    <string name="publish">Post</string>
+    <string name="create_post_hint">"Change "</string>
+    <string name="close_sesion">Sign Out</string>
+    <string name="configuration">Configuration</string>
+    <string name="new_post_title">New Post</string>
+    <string name="PDI">Point of Interest</string>
+    <string name="comments">Comments</string>
+    <string name="comments_hint">Write a Comment</string>
+    <string name="send_comment_button">Send Comment</string>
+    <string name="my_posts_btn">My posteos</string>
+    <string name="user_profile_title">Edit profile</string>
+    <string name="btn_volver">Back</string>
+    <string name="able_like_notifications">Allow \"Like\" notifications</string>
+    <string name="like">Like</string>
+    <string name="popular_post_notification_title">Your post is popular! 🎉</string>
+    <string name="popular_post_notification_text">Your post \"%1$s...\" has reached %2$d likes.</string>
+    <string name="dark_mode">Dark Mode</string>
+
+</resources>

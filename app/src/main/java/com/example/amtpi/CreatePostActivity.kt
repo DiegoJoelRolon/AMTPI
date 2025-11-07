@@ -116,7 +116,6 @@ class CreatePostActivity : AppCompatActivity() {
             .add(post)
             .addOnSuccessListener {
                 Toast.makeText(this, "Publicación creada con éxito", Toast.LENGTH_SHORT).show()
-                // Volvemos a HomeActivity
                 val intent = Intent(this, HomeActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                 }

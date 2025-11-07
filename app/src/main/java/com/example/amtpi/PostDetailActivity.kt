@@ -10,8 +10,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -57,9 +59,10 @@ class PostDetailActivity : AppCompatActivity() {
         sendCommentButton = findViewById(R.id.send_comment_button)
 
 
-        commentsAdapter = CommentsAdapter(commentsList) { comment ->
-            handleCommentLike(comment)
-        }
+        commentsAdapter = CommentsAdapter(commentsList,
+            onLikeClickListener = { comment -> handleCommentLike(comment) },
+            onEditClickListener = { comment -> showEditCommentDialog(comment) }
+        )
         commentsRecyclerView.adapter = commentsAdapter
         commentsRecyclerView.isNestedScrollingEnabled = false
 
@@ -110,6 +113,52 @@ class PostDetailActivity : AppCompatActivity() {
             finish()
         }
     }
+
+
+    private fun showEditCommentDialog(comment: Comment) {
+        val editText = EditText(this).apply {
+            setText(comment.commentText)
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(50, 20, 50, 20)
+            }
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("Editar Comentario")
+            .setView(editText)
+            .setPositiveButton("Guardar") { _, _ ->
+                val newText = editText.text.toString().trim()
+                if (newText.isNotEmpty() && newText != comment.commentText) {
+                    updateComment(comment, newText)
+                } else if (newText.isEmpty()) {
+                    Toast.makeText(this, "El comentario no puede estar vacío.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun updateComment(comment: Comment, newText: String) {
+        if (postId == null || comment.id == null) {
+            Toast.makeText(this, "Error al editar el comentario.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val commentRef = db.collection("posts").document(postId!!).collection("comments").document(comment.id!!)
+
+        commentRef.update("commentText", newText)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Comentario actualizado.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error al actualizar: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("PostDetailActivity", "Error updating comment", e)
+            }
+    }
+
+
 
     private fun loadComments(postId: String) {
         db.collection("posts").document(postId).collection("comments")

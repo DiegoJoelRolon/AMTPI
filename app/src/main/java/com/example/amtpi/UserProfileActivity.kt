@@ -3,6 +3,7 @@ package com.example.amtpi
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -30,7 +31,7 @@ class UserProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_user_profile)
-        // Asegúrate de que tu activity_user_profile.xml tiene el id "main" en el layout raíz
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -48,6 +49,21 @@ class UserProfileActivity : AppCompatActivity() {
             onLikeClickListener = { post -> toggleLike(post) }
         )
         userPostsRecyclerView.adapter = postsAdapter
+
+
+        val btnCerrarSesion = findViewById<Button>(R.id.btn_cerrar_sesion)
+        btnCerrarSesion.setOnClickListener {
+            val intent = Intent(this, PersonalProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnNuevoPdi = findViewById<Button>(R.id.btn_pdi)
+        btnNuevoPdi.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
         loadUserProfile()
     }
@@ -68,13 +84,11 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     private fun loadUserPosts(userId: String) {
-        // Usar addSnapshotListener para actualizaciones en tiempo real
         db.collection("posts")
             .whereEqualTo("userId", userId)
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
-                    // Este es el error que estás viendo. Revisa Logcat para el enlace del índice.
                     Log.w("UserProfileActivity", "Listen failed.", e)
                     Toast.makeText(this, "Error al cargar las publicaciones.", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
@@ -91,7 +105,7 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun toggleLike(post: Post) {
         val currentUser = auth.currentUser ?: return
-        val postId = post.id ?: return // Salir si el id es nulo
+        val postId = post.id ?: return
         val postRef = db.collection("posts").document(postId)
 
         if (post.likedBy.contains(currentUser.uid)) {
@@ -99,12 +113,12 @@ class UserProfileActivity : AppCompatActivity() {
         } else {
             postRef.update("likedBy", FieldValue.arrayUnion(currentUser.uid))
         }
-        // No es necesario llamar a loadUserPosts(), addSnapshotListener se encarga de actualizar la UI
+
     }
 
     private fun showDeleteConfirmationDialog(post: Post) {
         val currentUser = auth.currentUser
-        // Solo mostrar el diálogo si el post pertenece al usuario actual
+
         if (currentUser != null && currentUser.uid == post.userId) {
             AlertDialog.Builder(this)
                 .setTitle("Confirmar borrado")
@@ -128,7 +142,7 @@ class UserProfileActivity : AppCompatActivity() {
         db.collection("posts").document(postId).delete()
             .addOnSuccessListener {
                 Toast.makeText(this, "Posteo borrado exitosamente.", Toast.LENGTH_SHORT).show()
-                // La UI se actualizará automáticamente gracias a addSnapshotListener
+
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al borrar el posteo: ${e.message}", Toast.LENGTH_SHORT).show()

@@ -12,7 +12,8 @@ import java.util.Locale
 
 class CommentsAdapter(
     private val comments: List<Comment>,
-    private val onLikeClickListener: (Comment) -> Unit
+    private val onLikeClickListener: (Comment) -> Unit,
+    private val onEditClickListener: (Comment) -> Unit
 ) : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>() {
 
 
@@ -57,6 +58,18 @@ class CommentsAdapter(
         holder.likeButton.setOnClickListener {
             onLikeClickListener(comment)
         }
+
+
+        holder.itemView.setOnLongClickListener {
+
+            if (currentUser != null && currentUser.uid == comment.userId) {
+                onEditClickListener(comment)
+                true
+            } else {
+                false
+            }
+        }
+
     }
 
 

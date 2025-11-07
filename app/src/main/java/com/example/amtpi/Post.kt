@@ -15,5 +15,6 @@ data class Post(
     val userId: String = "",
     @ServerTimestamp
     val timestamp: Date? = null,
-    val likedBy: List<String> = emptyList()
+    val likedBy: List<String> = emptyList(),
+    val likedByCount: Int = 0
 ) : Parcelable

@@ -116,7 +116,7 @@ class MapActivity : AppCompatActivity() {
             pdiList.clear()
             for (doc in documents) {
                 val pdi = doc.toObject(Pdi::class.java)
-                pdiList.add(pdi) // Guardamos el PDI en nuestra lista
+                pdiList.add(pdi)
                 val pdiPoint = GeoPoint(pdi.latitude, pdi.longitude)
                 addPdiMarker(pdiPoint, pdi.name, pdi.description)
             }
