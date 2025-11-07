@@ -20,11 +20,20 @@
     <string name="comments_hint">Escreva um comentário...</string>
     <string name="send_comment_button">Enviar comentário</string>
     <string name="my_posts_btn">"Minhas postagens "</string>
-    <string name="user_profile_title">Editar perfil</string>
-    <string name="btn_volver">retornar</string>
+    <string name="user_profile_title">Editar nome de usuário</string>
+    <string name="btn_volver">Retornar</string>
     <string name="able_like_notifications">Ative as notificações de \"Curtir\"</string>
     <string name="like">" Eu gosto"</string>
     <string name="popular_post_notification_title">Sua publicação é popular! 🎉</string>
     <string name="popular_post_notification_text">Sua publicação \"%1$s...\" alcançou %2$d curtidas.</string>
     <string name="dark_mode">"Modo escuro "</string>
+    <string name="languaje">Linguagem</string>
+    <string name="save_changes">Salvar alterações</string>
+    <string name="username">Nome de usuário</string>
+    <string name="profile">Perfil</string>
+    <string name="likes_count">%1$d Curtidas</string>
+    <string name="edit_comment">Comentários</string>
+    <string name="delete_confirmation_title">Confirmar exclusão</string>
+    <string name="delete_confirmation_message">Tem certeza que deseja excluir esta postagem?</string>
+    <string name="delete_button">Excluir</string>
 </resources>

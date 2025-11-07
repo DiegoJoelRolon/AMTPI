@@ -28,7 +28,7 @@ class PersonalProfileActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var etUsername: EditText
-    private lateinit var etEmail: EditText
+
     private lateinit var btnEditProfile: Button
     private lateinit var btnSaveChanges: Button
     private lateinit var btnLogout: Button
@@ -54,7 +54,7 @@ class PersonalProfileActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         etUsername = findViewById(R.id.et_username)
-        etEmail = findViewById(R.id.et_email)
+
         btnEditProfile = findViewById(R.id.btn_edit_profile)
         btnSaveChanges = findViewById(R.id.btn_save_changes)
         btnLogout = findViewById(R.id.btn_logout)
@@ -131,7 +131,7 @@ class PersonalProfileActivity : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             etUsername.setText(user.displayName)
-            etEmail.setText(user.email)
+
         } else {
             Toast.makeText(this, "No se pudo cargar el usuario", Toast.LENGTH_SHORT).show()
             goToMainActivity()
@@ -160,7 +160,6 @@ class PersonalProfileActivity : AppCompatActivity() {
         val profileUpdates = userProfileChangeRequest { displayName = newUsername }
         user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show()
                 enableEditing(false)
             } else {
                 Toast.makeText(this, "Error al actualizar el perfil", Toast.LENGTH_SHORT).show()
@@ -170,7 +169,6 @@ class PersonalProfileActivity : AppCompatActivity() {
 
     private fun logoutUser() {
         auth.signOut()
-        Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show()
         goToMainActivity()
     }
 

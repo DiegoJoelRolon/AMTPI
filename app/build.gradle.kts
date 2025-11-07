@@ -19,7 +19,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // ADD THIS BLOCK
+
     buildFeatures {
         buildConfig = true
     }
@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    // ... your dependencies remain the same
+
     implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")

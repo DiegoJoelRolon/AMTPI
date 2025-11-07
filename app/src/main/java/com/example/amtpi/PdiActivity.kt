@@ -128,7 +128,7 @@ class PdiActivity : AppCompatActivity() {
                         }
                         userLocation.distanceTo(pdiLocation)
                     })
-                    Toast.makeText(this, "PDIs ordenados por cercanía.", Toast.LENGTH_SHORT).show()
+
                 } else {
                     tempList.sortBy { it.name }
                 }

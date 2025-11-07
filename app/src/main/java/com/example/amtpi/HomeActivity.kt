@@ -131,7 +131,7 @@ class HomeActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 checkForPopularPosts()
             } else {
-                Toast.makeText(this, "No recibirás notificaciones de 'me gusta'.", Toast.LENGTH_LONG).show()
+                Log.d("NotificationCheck", "Permiso de notificación denegado")
             }
         }
     }
@@ -191,15 +191,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun showDeleteConfirmationDialog(post: Post) {
         AlertDialog.Builder(this)
-            .setTitle("Confirmar borrado")
-            .setMessage("¿Estás seguro de que quieres borrar este posteo?")
-            .setPositiveButton("Borrar") { _, _ ->
+            .setTitle(getString(R.string.delete_confirmation_title))
+            .setMessage(getString(R.string.delete_confirmation_message))
+            .setPositiveButton(getString(R.string.delete_button)) { _, _ ->
                 deletePost(post)
-            }
-            .setNegativeButton("Cancelar", null)
+            }.setNegativeButton(android.R.string.cancel, null)
+
             .show()
     }
-
     private fun deletePost(post: Post) {
         val postId = post.id
         if (postId == null) {
@@ -208,10 +207,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         db.collection("posts").document(postId).delete()
-            .addOnSuccessListener {
-                Toast.makeText(this, "Posteo borrado exitosamente.", Toast.LENGTH_SHORT).show()
 
-            }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al borrar el posteo: ${e.message}", Toast.LENGTH_SHORT).show()
                 Log.w("HomeActivity", "Error deleting document", e)

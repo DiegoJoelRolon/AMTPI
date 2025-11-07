@@ -66,7 +66,8 @@ class PostsAdapter(
         }
 
         val likesCount = post.likedBy.size
-        holder.likeCount.text = "$likesCount Me gusta"
+        val context = holder.itemView.context
+        holder.likeCount.text = context.getString(R.string.likes_count, likesCount)
         holder.likeCount.visibility = if (likesCount > 0) View.VISIBLE else View.INVISIBLE
 
 

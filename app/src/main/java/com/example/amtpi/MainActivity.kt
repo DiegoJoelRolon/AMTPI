@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             val user = auth.currentUser
-                            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                             finish()

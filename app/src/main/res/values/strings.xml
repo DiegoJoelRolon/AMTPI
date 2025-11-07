@@ -10,7 +10,7 @@
     <string name="register_activity_title">Registrarse</string>
     <string name="pdi_button">Nuevo Posteo</string>
     <string name="publish">Publicar</string>
-    <string name="create_post_hint">¿Que pensas del lugar?</string>
+    <string name="create_post_hint">¿Que opinas del lugar?</string>
     <string name="content" translatable="false">GenericContent</string>
     <string name="configuration">Configuración</string>
     <string name="new_post_title">Nuevo Post</string>
@@ -19,7 +19,7 @@
     <string name="comments_hint">Escribi un comentario…</string>
     <string name="send_comment_button">Enviar comentario</string>
     <string name="my_posts_btn">Mis posts</string>
-    <string name="user_profile_title">Editar Perfil</string>
+    <string name="user_profile_title">Editar nombre de usuario</string>
     <string name="close_sesion">Cerrar sesion</string>
     <string name="btn_volver">Volver</string>
     <string name="able_like_notifications">Permitir recibir notificaciones de \"Me gusta\"</string>
@@ -27,6 +27,16 @@
     <string name="popular_post_notification_title">¡Tu post es popular! 🎉</string>
     <string name="popular_post_notification_text">Tu post \"%1$s...\" ha alcanzado %2$d me gusta.</string>
     <string name="dark_mode">Modo oscuro</string>
+    <string name="languaje">Idioma</string>
+    <string name="save_changes">Guardar cambios</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="profile">Perfil</string>
+    <string name="likes_count">%1$d Me gusta</string>
+    <string name="edit_comment">Editar comentario</string>
 
+    <string name="delete_confirmation_title">Confirmar borrado</string>
+    <string name="delete_confirmation_message">¿Estás seguro de que quieres borrar este posteo?
+    </string>
+    <string name="delete_button">Borrar</string>
 
 </resources>
